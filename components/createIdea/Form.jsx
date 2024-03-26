@@ -128,12 +128,12 @@ const Form = () => {
             </label>
             {tags && (
               <div className={styles.tagsWrapper}>
-                {tags.map((tag) => (
-                  <span className={styles.tags}>
+                {tags.map((tag , index) => (
+                  <span className={styles.tags} key={index}>
                     {tag}
                     <div
                       className={styles.delete}
-                      onClick={(e) => {
+                      onClick={() => {
                         setTags(tags.filter((t) => t !== tag));
                       }}
                     >
