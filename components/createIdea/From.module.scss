@@ -71,6 +71,9 @@
 
                     input[name=tags]{
                         position: relative;
+                        width: calc(60vmin - 48px);
+                        border-end-end-radius: 0px;
+                        border-start-end-radius: 0px;
                     }
                     
 
