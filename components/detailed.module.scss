@@ -5,7 +5,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serifgit;
+  font-family: "__Poppins_dd2ae8", "__Poppins_Fallback_dd2ae8";
 }
 
 .containerNew {
@@ -128,6 +128,24 @@
   margin-left: 1rem;
 }
 
+.nw {
+  display: none;
+}
+
+.click {
+  cursor: pointer;
+}
+.nw:checked ~ .content2 {
+  display: block;
+}
+.content2 {
+  display: none;
+}
+
+.read {
+  cursor: pointer;
+}
+
 @media (max-width: 768px) {
   .biggest {
     background-color: #f7f8f2;
@@ -138,7 +156,6 @@
     font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   }
   .containerNew {
-    margin-top: 15vh;
     background-color: #ffffff;
     width: 75vw;
     border-radius: 0.7rem;
@@ -192,7 +209,6 @@
     display: flex;
     justify-content: space-between;
     margin-right: 1.2rem;
-    font-size: 0.7rem;
     margin-right: 1rem;
   }
 
