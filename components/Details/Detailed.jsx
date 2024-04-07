@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./detailed.module.scss";
+import styles from "./Detailed.module.scss";
 import Image from "next/image";
 import user from "./user.png";
 import { useState } from "react";
