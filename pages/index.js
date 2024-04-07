@@ -2,6 +2,7 @@ import Head from "next/head";
 import { Poppins } from "next/font/google";
 import styles from "@/styles/Home.module.scss";
 import Form from "@/components/createIdea/Form";
+import Detailed from "@/components/Details/Detailed";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -18,7 +19,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={`${styles.main} ${poppins.className}`}>
-        <Form/>
+        {/* <Form/> */}
+        <Detailed />
       </main>
     </>
   );
