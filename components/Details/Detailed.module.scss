@@ -1,0 +1,235 @@
+.biggest {
+  background-color: #f7f8f2;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "__Poppins_dd2ae8", "__Poppins_Fallback_dd2ae8";
+}
+
+.containerNew {
+  background-color: #ffffff;
+  width: 75vw;
+  height: auto;
+  padding: 2rem;
+  border-radius: 0.7rem;
+  box-shadow: 2px 2px rgb(212, 212, 212);
+}
+
+.start {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left {
+  display: flex;
+  justify-content: space-between;
+}
+
+.name {
+  margin-right: 0.7rem;
+}
+
+.right {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+}
+.heartIcon {
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tag1 {
+  background-color: #f0c939;
+  font-size: 0.8rem;
+  width: 3rem;
+  height: 1.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.15rem;
+  padding-bottom: 0.15rem;
+  margin-right: 0.4rem;
+}
+
+.titleSection {
+  margin-top: 1rem;
+}
+.title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+.contentIdea {
+  font-size: 1rem;
+  margin-bottom: 3.5rem;
+}
+
+.writecomment {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  border-bottom: dashed;
+  border-color: rgb(159, 158, 158);
+  border-width: 2px;
+  padding-bottom: 1rem;
+}
+.inputs {
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  width: 50vw;
+}
+
+.add {
+  width: 9rem;
+  height: 2rem;
+  border-radius: 1rem;
+  border: none;
+  background-color: #4285f4;
+  font-size: 0.75rem;
+  color: white;
+}
+
+.comments {
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.corner {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.side {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 1.2rem;
+  font-size: 0.9rem;
+  margin-right: 1rem;
+}
+.name1 {
+  font-weight: bold;
+}
+
+.info {
+  margin-left: 1rem;
+}
+
+.nw {
+  display: none;
+}
+
+.click {
+  cursor: pointer;
+}
+.nw:checked ~ .content2 {
+  display: block;
+}
+.content2 {
+  display: none;
+}
+
+.read {
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .biggest {
+    background-color: #f7f8f2;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  }
+  .containerNew {
+    background-color: #ffffff;
+    width: 75vw;
+    border-radius: 0.7rem;
+    box-shadow: 2px 2px rgb(212, 212, 212);
+  }
+
+  .add {
+    width: 12vw;
+    height: 2rem;
+    border-radius: 1rem;
+    border: none;
+    background-color: #4285f4;
+    font-size: 0.5rem;
+    color: white;
+  }
+
+  .tag1 {
+    background-color: #f0c939;
+    font-size: 0.8rem;
+    width: 6vw;
+    display: flex;
+    justify-content: center;
+    border-radius: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.15rem;
+    padding-bottom: 0.15rem;
+    margin-right: 1rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .left {
+    font-size: 0.8rem;
+  }
+
+  .contentIdea {
+    font-size: 0.7rem;
+  }
+
+  .content {
+    font-size: 0.7rem;
+  }
+
+  .info {
+    font-size: 0.7rem;
+    margin-left: 0.5rem;
+  }
+
+  .side {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 1.2rem;
+    margin-right: 1rem;
+  }
+
+  .title {
+    font-size: 1.1rem;
+  }
+  .add {
+    font-size: 0.4rem;
+    width: 4rem;
+  }
+
+  .inputs {
+    border: none;
+    outline: none;
+    font-size: 0.8rem;
+    width: 39vw;
+  }
+
+  .tag1 {
+    width: 3rem;
+    height: 1.4rem;
+    margin-right: 0.3rem;
+  }
+}
