@@ -5,7 +5,7 @@ import { IoMdClose } from "react-icons/io";
 const Form = () => {
   const [close, setClose] = useState(false);
   const [tags, setTags] = useState([]);
-  const [errorFields , setErrorFields] = useState({})
+  const [errorFields, setErrorFields] = useState({});
 
   const [formData, setFormData] = useState({
     overview: "",
@@ -23,45 +23,40 @@ const Form = () => {
 
   //form validation check
   //validate function check if there exist empty field then update the errorField as true
-  const validate = (value) =>{
-    const errors = {}
-    if(!value.overview){
-      errors.overview = true
+  const validate = (value) => {
+    const errors = {};
+    if (!value.overview) {
+      errors.overview = true;
+    } else {
+      errors.overview = false;
     }
-    else{
-      errors.overview = false
+    if (!value.desc) {
+      errors.desc = true;
+    } else {
+      errors.desc = false;
     }
-    if(!value.desc){
-      errors.desc = true
+    if (tags.length === 0) {
+      errors.tags = true;
+    } else {
+      errors.tags = false;
     }
-    else{
-      errors.desc = false
-    }
-    if(tags.length === 0){
-      errors.tags = true
-    }
-    else{
-      errors.tags = false
-    }
-    if(!value.progress){
-      errors.progress = true
-    }
-    else{
-      errors.progress = false
+    if (!value.progress) {
+      errors.progress = true;
+    } else {
+      errors.progress = false;
     }
 
     return errors;
-  }
-
+  };
 
   const submitHandler = (e) => {
     e.preventDefault();
     const errors = validate(formData);
 
-    if(errors.overview || errors.desc || errors.tags || errors.progress){
+    if (errors.overview || errors.desc || errors.tags || errors.progress) {
       setErrorFields(errors);
-      alert("all fields are required")
-      return ;
+      alert("all fields are required");
+      return;
     }
     alert("successfully Added");
     setClose(true);
@@ -90,7 +85,7 @@ const Form = () => {
                 value={formData.overview}
                 name="overview"
                 type="text"
-                style={{borderColor : `${errorFields.overview ? "red" : ""}`}}
+                style={{ borderColor: `${errorFields.overview ? "red" : ""}` }}
               ></input>
             </label>
 
@@ -101,7 +96,7 @@ const Form = () => {
                 value={formData.desc}
                 name="desc"
                 type="text"
-                style={{borderColor : `${errorFields.desc ? "red" : ""}`}}
+                style={{ borderColor: `${errorFields.desc ? "red" : ""}` }}
               ></input>
             </label>
 
@@ -112,7 +107,7 @@ const Form = () => {
                 value={formData.tags}
                 name="tags"
                 type="text"
-                style={{borderColor : `${errorFields.tags ? "red" : ""}`}}
+                style={{ borderColor: `${errorFields.tags ? "red" : ""}` }}
               ></input>
               <div
                 type="text"
@@ -128,7 +123,7 @@ const Form = () => {
             </label>
             {tags && (
               <div className={styles.tagsWrapper}>
-                {tags.map((tag , index) => (
+                {tags.map((tag, index) => (
                   <span className={styles.tags} key={index}>
                     {tag}
                     <div
@@ -151,7 +146,7 @@ const Form = () => {
                 value={formData.progress}
                 name="progress"
                 type="text"
-                style={{borderColor : `${errorFields.progress ? "red" : ""}`}}
+                style={{ borderColor: `${errorFields.progress ? "red" : ""}` }}
               ></input>
             </label>
 
