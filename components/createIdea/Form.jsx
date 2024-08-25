@@ -1,24 +1,30 @@
+"use client";
+
 import React, { useState } from "react";
 import styles from "./From.module.scss";
 import { IoMdClose } from "react-icons/io";
+import { Toaster, toast } from "sonner";
+import axios from "axios";
 
 const Form = () => {
   const [close, setClose] = useState(false);
   const [tags, setTags] = useState([]);
+  const [tagField, setTagField] = useState("");
   const [errorFields, setErrorFields] = useState({});
-
-  const [formData, setFormData] = useState({
-    overview: "",
-    desc: "",
-    tags: "",
-    progress: "",
-  });
-
+  const [user, setUser] = useState("barnilsarma@gmail.com");
+  const [overview, setOverview] = useState("");
+  const [desc, setDesc] = useState("");
+  const [progress, setProgress] = useState("");
+  const addTags = (e) => {
+    e.preventDefault();
+    var temp = [];
+    temp = tags;
+    temp.push(tagField);
+    setTags(temp);
+    setTagField("");
+  };
   const changeHandler = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    setTagField(e.target.value);
   };
 
   //form validation check
@@ -51,16 +57,35 @@ const Form = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    const errors = validate(formData);
+    const createIdea = async () => {
+      console.log(process.env.NEXT_PUBLIC_API_URL);
+      const health = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1`,
+      );
+      console.log(health);
+      // const act=await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/idea/add`,{
+      //   user:user,overview:overview,desc:desc,tags:tags,progress:progress
+      // });
+      const act = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/idea/add`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user,
+          overview,
+          desc,
+          tags,
+          progress,
+        }),
+      });
+      console.log(act);
+      return act;
+    };
 
-    if (errors.overview || errors.desc || errors.tags || errors.progress) {
-      setErrorFields(errors);
-      alert("all fields are required");
-      return;
-    }
-    alert("successfully Added");
-    setClose(true);
-    //send data to the backend
+    console.log("start");
+    createIdea();
+    console.log("ed");
   };
   return (
     <div className={`${styles.modal} ${close ? styles.close : ""}`}>
@@ -77,12 +102,12 @@ const Form = () => {
               <IoMdClose />
             </div>
           </div>
-          <form onSubmit={submitHandler}>
+          <form>
             <label className={styles.label}>
               Overview Of The Idea
               <input
-                onChange={changeHandler}
-                value={formData.overview}
+                onChange={(e) => setOverview(e.target.value)}
+                value={overview}
                 name="overview"
                 type="text"
                 style={{ borderColor: `${errorFields.overview ? "red" : ""}` }}
@@ -92,8 +117,8 @@ const Form = () => {
             <label className={styles.label}>
               Description
               <input
-                onChange={changeHandler}
-                value={formData.desc}
+                onChange={(e) => setDesc(e.target.value)}
+                value={desc}
                 name="desc"
                 type="text"
                 style={{ borderColor: `${errorFields.desc ? "red" : ""}` }}
@@ -101,24 +126,18 @@ const Form = () => {
             </label>
 
             <label className={styles.label} id={styles.addP}>
-              Tags
-              <input
-                onChange={changeHandler}
-                value={formData.tags}
-                name="tags"
-                type="text"
-                style={{ borderColor: `${errorFields.tags ? "red" : ""}` }}
-              ></input>
-              <div
-                type="text"
-                className={styles.add}
-                onClick={() => {
-                  formData.tags &&
-                    (setTags([...tags, formData.tags]),
-                    setFormData({ ...formData, tags: "" }));
-                }}
-              >
-                Add
+              <label>Tags</label>
+              <div className={styles.tagInner}>
+                <input
+                  onChange={changeHandler}
+                  value={tagField}
+                  name="tags"
+                  type="text"
+                  style={{ borderColor: `${errorFields.tags ? "red" : ""}` }}
+                ></input>
+                <button type="text" className={styles.add} onClick={addTags}>
+                  Add
+                </button>
               </div>
             </label>
             {tags && (
@@ -142,18 +161,19 @@ const Form = () => {
             <label className={styles.label}>
               Progress
               <input
-                onChange={changeHandler}
-                value={formData.progress}
+                onChange={(e) => setProgress(e.target.value)}
+                value={progress}
                 name="progress"
                 type="text"
                 style={{ borderColor: `${errorFields.progress ? "red" : ""}` }}
               ></input>
             </label>
 
-            <button type="submit">Submit Idea</button>
+            <button onClick={submitHandler}>Submit Idea</button>
           </form>
         </div>
       </div>
+      <Toaster />
     </div>
   );
 };

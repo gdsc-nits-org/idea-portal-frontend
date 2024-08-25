@@ -52,26 +52,29 @@
           align-items: flex-start;
           font-size: 1.25rem;
           color: #000;
+          .tagInner {
+            display: flex;
+            flex-direction: row;
+            input {
+              width: 60vmin;
+              height: 2.75rem;
+              border-radius: 0.75rem;
+              padding: 0.9375rem;
+              border: 1px solid #e7e7e7;
+              outline: none;
+              max-width: 480px;
 
-          input {
-            width: 60vmin;
-            height: 2.75rem;
-            border-radius: 0.75rem;
-            padding: 0.9375rem;
-            border: 1px solid #e7e7e7;
-            outline: none;
-            max-width: 480px;
-
-            &:focus {
-              border: 1px solid #4285f4;
+              &:focus {
+                border: 1px solid #4285f4;
+              }
             }
-          }
 
-          input[name="tags"] {
-            position: relative;
-            width: calc(60vmin - 48px);
-            border-end-end-radius: 0px;
-            border-start-end-radius: 0px;
+            input[name="tags"] {
+              position: relative;
+              width: calc(60vmin - 48px);
+              border-end-end-radius: 0px;
+              border-start-end-radius: 0px;
+            }
           }
         }
         #addP {
@@ -83,8 +86,10 @@
             background-color: #4285f4;
             color: #fff;
             border-radius: 15px;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
             border: none;
-
+            width: 3.4rem;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -93,9 +98,9 @@
               cursor: pointer;
             }
 
-            position: absolute;
-            top: 42%;
-            right: 0;
+            // position: absolute;
+            // top: 42%;
+            // right: 0;
           }
         }
 
