@@ -58,14 +58,6 @@ const Form = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     const createIdea = async () => {
-      console.log(process.env.NEXT_PUBLIC_API_URL);
-      const health = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/v1`,
-      );
-      console.log(health);
-      // const act=await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/idea/add`,{
-      //   user:user,overview:overview,desc:desc,tags:tags,progress:progress
-      // });
       const act = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/idea/add`, {
         method: "POST",
         headers: {
@@ -74,18 +66,21 @@ const Form = () => {
         body: JSON.stringify({
           user,
           overview,
-          desc,
+          description: desc,
           tags,
           progress,
         }),
       });
-      console.log(act);
+      if (act.status === 200) {
+        toast.success("Successfully submitted idea!!");
+      } else {
+        toast.error(
+          "Ooops!! Failed to create the idea.Please try again later!!",
+        );
+      }
       return act;
     };
-
-    console.log("start");
     createIdea();
-    console.log("ed");
   };
   return (
     <div className={`${styles.modal} ${close ? styles.close : ""}`}>
