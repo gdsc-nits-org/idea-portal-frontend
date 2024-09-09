@@ -1,0 +1,39 @@
+.IdeaCont {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f7f8f2;
+  padding: 2rem;
+  overflow-x: hidden;
+  .headerRow {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    @media only screen and (min-width: 500px) {
+      flex-direction: row;
+    }
+    .headerText {
+      font-size: 1rem;
+    }
+    .desc {
+      width: 50%;
+      overflow: wrap;
+      font-size: 0.6rem;
+      text-align: center;
+      @media screen and (min-width: 500px) {
+        text-align: left;
+      }
+    }
+  }
+  .innerCont {
+    overflow-x: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1rem;
+  }
+}
