@@ -35,16 +35,31 @@ const Card = (props) => {
               Read more Read more
             </div>
           </div>
-          {read ? (
-            <div className={styles.readMore}>
-              <div>
-                <button onClick={() => setRead(false)}>X</button>
-              </div>
-              <h1 className={styles.readHead}>{props.overview}</h1>
-              <p className={styles.readDesc}>{props.description}</p>
-              <h3 className={styles.progress}>{props.progress}</h3>
+          <div
+            className={styles.readMore}
+            style={{
+              zIndex: `${read ? 2 : -1}`,
+              opacity: `${read ? 1 : 0}`,
+              transition: "ease 500ms",
+            }}
+          >
+            <div>
+              <button
+                onClick={() => setRead(false)}
+                style={{
+                  backgroundColor: "transparent",
+                  border: "none",
+                  fontSize: "1rem",
+                  cursor: "pointer",
+                }}
+              >
+                X
+              </button>
             </div>
-          ) : null}
+            <h1 className={styles.readHead}>{props.overview}</h1>
+            <p className={styles.readDesc}>{props.description}</p>
+            <h3 className={styles.progress}>{props.progress}</h3>
+          </div>
         </div>
         <div className={styles.arrow}>
           <svg
