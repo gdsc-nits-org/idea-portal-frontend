@@ -1,5 +1,7 @@
+"use client";
 import Head from "next/head";
 import { Poppins } from "next/font/google";
+import Spline from "@splinetool/react-spline";
 import styles from "@/styles/Home.module.scss";
 import Form from "@/components/createIdea/Form";
 import Idea from "@/components/IdeaCont/IdeaCont";
@@ -18,8 +20,36 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={`${styles.main} ${poppins.className}`}>
-        <Idea />
-        <Form />
+        <div className={styles.container}>
+          <div className={styles.left}>
+            <div className={styles.top}>
+              <div className={styles.firstName}>
+                <span className={styles.color1}>G</span>
+                <span className={styles.color2}>D</span>
+                <span className={styles.color3}>S</span>
+                <span className={styles.color4}>C</span>
+              </div>
+              <div className={styles.secondName}>Idea Hub</div>
+            </div>
+            <div className={styles.mid}>
+              <div className={styles.mid1}>
+                GDSC NIT Silchar is dedicated to collaboratively addressing
+                real-world challenges encountered by communities through
+                constructive problem-solving. We eagerly welcome your innovative
+                ideas, as they could potentially be selected as team projects!
+              </div>
+              <div className={styles.mid2}>
+                <a href="">How This Works?</a>
+              </div>
+            </div>
+            <div className={styles.bottom}>
+              <button className={styles.btn1}>Add Ideas</button>
+            </div>
+          </div>
+          <div className={styles.right}>
+            <Spline scene="https://prod.spline.design/SCKxJpnz-9D6i2mh/scene.splinecode" />
+          </div>
+        </div>
       </div>
     </>
   );
