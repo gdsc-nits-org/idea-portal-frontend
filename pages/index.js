@@ -1,4 +1,4 @@
-"use client";
+'use client'
 import Head from "next/head";
 import { Poppins } from "next/font/google";
 import Spline from "@splinetool/react-spline";
