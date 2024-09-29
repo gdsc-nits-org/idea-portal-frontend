@@ -6,8 +6,7 @@ import { IoMdClose } from "react-icons/io";
 import { Toaster, toast } from "sonner";
 import axios from "axios";
 
-const Form = () => {
-  const [close, setClose] = useState(false);
+const Form = ({ closeState, setCloseState }) => {
   const [tags, setTags] = useState([]);
   const [tagField, setTagField] = useState("");
   const [errorFields, setErrorFields] = useState({});
@@ -83,7 +82,7 @@ const Form = () => {
     createIdea();
   };
   return (
-    <div className={`${styles.modal} ${close ? styles.close : ""}`}>
+    <div className={`${styles.modal} ${closeState ? styles.close : ""}`}>
       <div className={styles.wrapper}>
         <div className={styles.details}>
           <div className={styles.heading}>
@@ -91,7 +90,7 @@ const Form = () => {
             <div
               className={styles.cross}
               onClick={() => {
-                setClose(true);
+                setCloseState(true);
               }}
             >
               <IoMdClose />
@@ -106,6 +105,7 @@ const Form = () => {
                 name="overview"
                 type="text"
                 style={{ borderColor: `${errorFields.overview ? "red" : ""}` }}
+                className={styles.commField}
               ></input>
             </label>
 
@@ -117,6 +117,7 @@ const Form = () => {
                 name="desc"
                 type="text"
                 style={{ borderColor: `${errorFields.desc ? "red" : ""}` }}
+                className={styles.commField}
               ></input>
             </label>
 
@@ -161,6 +162,7 @@ const Form = () => {
                 name="progress"
                 type="text"
                 style={{ borderColor: `${errorFields.progress ? "red" : ""}` }}
+                className={styles.commField}
               ></input>
             </label>
 

@@ -1,5 +1,6 @@
 .IdeaCont {
   display: flex;
+  overflow-x: hidden;
   flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
@@ -7,7 +8,7 @@
   background-color: #f7f8f2;
   padding: 2rem;
   gap: 2rem;
-  overflow: hidden;
+
   .headerRow {
     display: flex;
     flex-direction: column;
@@ -21,7 +22,7 @@
     }
     .desc {
       width: 50%;
-      overflow: wrap;
+      overflow-wrap: break-word;
       font-size: 0.6rem;
       text-align: center;
       @media screen and (min-width: 500px) {
@@ -29,13 +30,46 @@
       }
     }
   }
+
   .innerCont {
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    flex-direction: column;
+    @media screen and (min-width: 600px) {
+      flex-direction: row;
+    }
+    justify-content: center;
+    overflow-x: hidden;
     align-items: center;
-    gap: 1rem;
+    gap: 1.5rem;
     width: 100%;
-    overflow: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 1rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .allCont {
+    height: 25%;
+    display: flex;
+    align-items: center;
+    padding-top: 2rem;
+    .allBtn {
+      height: 2.6rem;
+      width: 8.8rem;
+      text-decoration: none;
+      color: #ffffff;
+      background-color: #4885ed;
+      border: none;
+      border-radius: 0.2rem;
+      font-size: 1.3rem;
+      text-decoration: none;
+      color: #ffffff;
+      cursor: pointer;
+      text-align: center;
+      padding-top: 0.2rem;
+    }
+  }
+  .innerCont::-webkit-scrollbar {
+    display: none;
   }
 }

@@ -3,6 +3,7 @@ import styles from "./IdeaCont.module.scss";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { toast, Toaster } from "sonner";
+import Link from "next/link";
 
 const IdeaCont = () => {
   const [data, setData] = useState([]);
@@ -12,7 +13,7 @@ const IdeaCont = () => {
         const res = await axios.get(
           `${process.env.NEXT_PUBLIC_API_URL}/idea/read`,
         );
-        setData(res.data);
+        setData(res.data.slice(0, 4));
       } catch (err) {
         toast.error(err.message);
       }
@@ -38,6 +39,11 @@ const IdeaCont = () => {
               key={id}
             />
           ))}
+        </div>
+        <div className={styles.allCont}>
+          <Link href="/ideas" className={styles.allBtn}>
+            Show All
+          </Link>
         </div>
         <Toaster />
       </div>
