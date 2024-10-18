@@ -1,6 +1,4 @@
 import styles from "./IdeaCard.module.scss";
-import React from "react";
-import { Poppins } from "next/font/google";
 import { useState } from "react";
 
 const Card = (props) => {

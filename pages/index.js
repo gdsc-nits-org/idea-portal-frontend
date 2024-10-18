@@ -1,14 +1,14 @@
-"use client";
 import Head from "next/head";
 import { useState } from "react";
 import { Poppins } from "next/font/google";
-import Spline from "@splinetool/react-spline";
 import styles from "@/styles/Home.module.scss";
 import Form from "@/components/createIdea/Form";
 import Footer from "@/components/Footer/Footer";
 import Idea from "@/components/IdeaCont/IdeaCont";
+import Image from "next/image";
 import { useSignInWithGoogle, useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "@/utils/firebase";
+import Spline from "@/components/Spline/Spline";
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -72,9 +72,6 @@ export default function Home() {
                 constructive problem-solving. We eagerly welcome your innovative
                 ideas, as they could potentially be selected as team projects!
               </div>
-              {/*<div className={styles.mid2}>
-                <a href="">How This Works?</a>
-                </div>*/}
             </div>
             <div className={styles.bottom}>
               {_user ? (
@@ -87,16 +84,19 @@ export default function Home() {
               ) : (
                 <button onClick={handleLogin} className={styles.btn2}>
                   Login with Google
-                  <img
+                  <Image
                     className={styles.icon}
                     src="https://res.cloudinary.com/dgnlmdkyq/image/upload/v1727539598/viNp17XpEF-AwWwOZSj_TvgobO1CGmUUgcTtQoAG40YaYctYMoUqaRup0rTxxxfQvWw3MvhXesw_s900-c-k-c0x00ffffff-no-rj_vzmmmj.webp"
+                    width={500}
+                    height={500}
+                    alt="logo"
                   />
                 </button>
               )}
             </div>
           </div>
           <div className={styles.right}>
-            <Spline scene="https://prod.spline.design/SCKxJpnz-9D6i2mh/scene.splinecode" />
+            <Spline />
           </div>
         </div>
         <Idea />

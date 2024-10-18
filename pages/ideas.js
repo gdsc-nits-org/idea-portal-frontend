@@ -1,3 +1,5 @@
+"use client";
+
 import Card from "@/components/IdeaCard/IdeaCard";
 import styles from "../styles/Ideas.module.scss";
 import axios from "axios";
