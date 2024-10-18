@@ -5,7 +5,6 @@ import styles from "@/styles/Home.module.scss";
 import Form from "@/components/createIdea/Form";
 import Footer from "@/components/Footer/Footer";
 import Idea from "@/components/IdeaCont/IdeaCont";
-import Image from "next/image";
 import { useSignInWithGoogle, useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "@/utils/firebase";
 import Spline from "@/components/Spline/Spline";
@@ -84,12 +83,10 @@ export default function Home() {
               ) : (
                 <button onClick={handleLogin} className={styles.btn2}>
                   Login with Google
-                  <Image
+                  <img
                     className={styles.icon}
                     src="https://res.cloudinary.com/dgnlmdkyq/image/upload/v1727539598/viNp17XpEF-AwWwOZSj_TvgobO1CGmUUgcTtQoAG40YaYctYMoUqaRup0rTxxxfQvWw3MvhXesw_s900-c-k-c0x00ffffff-no-rj_vzmmmj.webp"
                     width={500}
-                    height={500}
-                    alt="logo"
                   />
                 </button>
               )}
