@@ -18,12 +18,12 @@
       flex-direction: row;
     }
     .headerText {
-      font-size: 1rem;
+      font-size: 1.5rem;
     }
     .desc {
       width: 50%;
       overflow-wrap: break-word;
-      font-size: 0.6rem;
+      font-size: 0.8rem;
       text-align: center;
       @media screen and (min-width: 500px) {
         text-align: left;

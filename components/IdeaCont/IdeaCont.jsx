@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { toast, Toaster } from "sonner";
 import Link from "next/link";
 
-const IdeaCont = () => {
+const IdeaCont = ({ newIdea }) => {
   const [data, setData] = useState([]);
   useEffect(() => {
     async function fetchData() {
@@ -20,6 +20,11 @@ const IdeaCont = () => {
     }
     fetchData();
   }, []);
+  useEffect(() => {
+    if (newIdea) {
+      setData((prevData) => [newIdea, ...prevData.slice(0, 3)]);
+    }
+  }, [newIdea]);
   if (data.length > 0) {
     return (
       <div className={styles.IdeaCont}>
@@ -49,7 +54,7 @@ const IdeaCont = () => {
       </div>
     );
   } else {
-    return <div>Loading Ideas.....</div>;
+    return <div>Idea List is Empty. Please Add!!</div>;
   }
 };
 

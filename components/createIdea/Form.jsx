@@ -4,9 +4,19 @@ import React, { useState } from "react";
 import styles from "./From.module.scss";
 import { IoMdClose } from "react-icons/io";
 import { Toaster, toast } from "sonner";
-import axios from "axios";
+import { z } from "zod";
+import { auth } from "@/utils/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 
-const Form = ({ closeState, setCloseState }) => {
+const IdeaSchema = z.object({
+  overview: z.string().nonempty("Overview is required"),
+  description: z.string().nonempty("Description is required"),
+  tags: z.array(z.string()).min(1, "At least one tag is required"),
+  progress: z.string().nonempty("Progress is required"),
+});
+
+const Form = ({ closeState, setCloseState, onIdeaCreated }) => {
+  const [_user] = useAuthState(auth);
   const [tags, setTags] = useState([]);
   const [tagField, setTagField] = useState("");
   const [errorFields, setErrorFields] = useState({});
@@ -14,48 +24,41 @@ const Form = ({ closeState, setCloseState }) => {
   const [overview, setOverview] = useState("");
   const [desc, setDesc] = useState("");
   const [progress, setProgress] = useState("");
+
   const addTags = (e) => {
     e.preventDefault();
-    var temp = [];
-    temp = tags;
-    temp.push(tagField);
-    setTags(temp);
-    setTagField("");
+    if (tagField) {
+      setTags((prevTags) => [...prevTags, tagField]);
+      setTagField("");
+    }
   };
+
   const changeHandler = (e) => {
     setTagField(e.target.value);
   };
 
-  //form validation check
-  //validate function check if there exist empty field then update the errorField as true
-  const validate = (value) => {
-    const errors = {};
-    if (!value.overview) {
-      errors.overview = true;
-    } else {
-      errors.overview = false;
-    }
-    if (!value.desc) {
-      errors.desc = true;
-    } else {
-      errors.desc = false;
-    }
-    if (tags.length === 0) {
-      errors.tags = true;
-    } else {
-      errors.tags = false;
-    }
-    if (!value.progress) {
-      errors.progress = true;
-    } else {
-      errors.progress = false;
-    }
-
-    return errors;
-  };
-
   const submitHandler = (e) => {
     e.preventDefault();
+
+    const formData = {
+      overview,
+      description: desc,
+      tags,
+      progress,
+    };
+
+    const result = IdeaSchema.safeParse(formData);
+
+    if (!result.success) {
+      const errors = result.error.format();
+      setErrorFields(errors);
+      toast.error("Please fill out all required fields.");
+      return;
+    }
+    if (_user) {
+      setUser(_user?.email);
+    }
+
     const createIdea = async () => {
       const act = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/idea/add`, {
         method: "POST",
@@ -70,17 +73,20 @@ const Form = ({ closeState, setCloseState }) => {
           progress,
         }),
       });
+
       if (act.status === 200) {
+        const newIdea = await act.json();
         toast.success("Successfully submitted idea!!");
+        setCloseState(true);
+        onIdeaCreated(newIdea);
       } else {
-        toast.error(
-          "Ooops!! Failed to create the idea.Please try again later!!",
-        );
+        toast.error("Failed to create the idea!!");
       }
-      return act;
     };
+
     createIdea();
   };
+
   return (
     <div className={`${styles.modal} ${closeState ? styles.close : ""}`}>
       <div className={styles.wrapper}>
@@ -104,9 +110,12 @@ const Form = ({ closeState, setCloseState }) => {
                 value={overview}
                 name="overview"
                 type="text"
-                style={{ borderColor: `${errorFields.overview ? "red" : ""}` }}
+                style={{ borderColor: `${errorFields?.overview ? "red" : ""}` }}
                 className={styles.commField}
-              ></input>
+              />
+              {errorFields?.overview && (
+                <span className={styles.errorText}>Overview is required</span>
+              )}
             </label>
 
             <label className={styles.label}>
@@ -116,9 +125,16 @@ const Form = ({ closeState, setCloseState }) => {
                 value={desc}
                 name="desc"
                 type="text"
-                style={{ borderColor: `${errorFields.desc ? "red" : ""}` }}
+                style={{
+                  borderColor: `${errorFields?.description ? "red" : ""}`,
+                }}
                 className={styles.commField}
-              ></input>
+              />
+              {errorFields?.description && (
+                <span className={styles.errorText}>
+                  Description is required
+                </span>
+              )}
             </label>
 
             <label className={styles.label} id={styles.addP}>
@@ -129,12 +145,17 @@ const Form = ({ closeState, setCloseState }) => {
                   value={tagField}
                   name="tags"
                   type="text"
-                  style={{ borderColor: `${errorFields.tags ? "red" : ""}` }}
-                ></input>
+                  style={{ borderColor: `${errorFields?.tags ? "red" : ""}` }}
+                />
                 <button type="text" className={styles.add} onClick={addTags}>
                   Add
                 </button>
               </div>
+              {errorFields?.tags && (
+                <span className={styles.errorText}>
+                  At least one tag is required
+                </span>
+              )}
             </label>
             {tags && (
               <div className={styles.tagsWrapper}>
@@ -161,9 +182,12 @@ const Form = ({ closeState, setCloseState }) => {
                 value={progress}
                 name="progress"
                 type="text"
-                style={{ borderColor: `${errorFields.progress ? "red" : ""}` }}
+                style={{ borderColor: `${errorFields?.progress ? "red" : ""}` }}
                 className={styles.commField}
-              ></input>
+              />
+              {errorFields?.progress && (
+                <span className={styles.errorText}>Progress is required</span>
+              )}
             </label>
 
             <button onClick={submitHandler}>Submit Idea</button>

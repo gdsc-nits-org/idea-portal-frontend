@@ -17,6 +17,7 @@ export default function Home() {
   const [closeState, setCloseState] = useState(true);
   const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
   const [_user, _loading, _error] = useAuthState(auth);
+  const [newIdea, setNewIdea] = useState(null);
 
   const handleForm = () => {
     setCloseState(!closeState);
@@ -24,6 +25,10 @@ export default function Home() {
 
   const handleLogin = () => {
     signInWithGoogle();
+  };
+
+  const handleIdeaCreated = (idea) => {
+    setNewIdea(idea);
   };
 
   if (loading || _loading) {
@@ -59,14 +64,13 @@ export default function Home() {
               <div className={styles.firstName}>
                 <span className={styles.color1}>G</span>
                 <span className={styles.color2}>D</span>
-                <span className={styles.color3}>S</span>
-                <span className={styles.color4}>C</span>
+                <span className={styles.color3}>G</span>
               </div>
               <div className={styles.secondName}>Idea Hub</div>
             </div>
             <div className={styles.mid}>
               <div className={styles.mid1}>
-                GDSC NIT Silchar is dedicated to collaboratively addressing
+                GDGC NIT Silchar is dedicated to collaboratively addressing
                 real-world challenges encountered by communities through
                 constructive problem-solving. We eagerly welcome your innovative
                 ideas, as they could potentially be selected as team projects!
@@ -78,7 +82,11 @@ export default function Home() {
                   <button className={styles.btn1} onClick={handleForm}>
                     Add Ideas
                   </button>
-                  <Form closeState={closeState} setCloseState={setCloseState} />
+                  <Form
+                    closeState={closeState}
+                    setCloseState={setCloseState}
+                    onIdeaCreated={handleIdeaCreated}
+                  />
                 </>
               ) : (
                 <button onClick={handleLogin} className={styles.btn2}>
@@ -96,7 +104,7 @@ export default function Home() {
             <Spline />
           </div>
         </div>
-        <Idea />
+        <Idea newIdea={newIdea} />
       </div>
       <Footer />
     </>

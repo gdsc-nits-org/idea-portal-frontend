@@ -20,49 +20,52 @@ function Footer() {
             </div>
             <div className={styles.footerLinks}>
               <a
-                href="https://www.linkedin.com/company/gdscnits/mycompany/"
+                href="https://www.linkedin.com/company/gdgcnits/"
                 target="_blank"
                 rel="noreferrer"
-                className={styles.footerSocialLinks}
+                className="footer-social-links"
                 title="LinkedIn"
               >
-                <AiFillLinkedin className={styles.footerBtn1} size={24} />
+                <AiFillLinkedin
+                  className={styles.footerSocialLinks}
+                  size={44}
+                />
               </a>
               <a
-                href="https://www.facebook.com/gdscnits/"
+                href="https://www.facebook.com/gdgnits"
                 target="_blank"
                 rel="noreferrer"
-                className={styles.footerSocialLinks}
+                className="footer-social-links"
                 title="Facebook"
               >
-                <ImFacebook className={styles.footerBtn2} size={24} />
+                <ImFacebook className={styles.footerSocialLinks} size={44} />
               </a>
               <a
-                href="https://www.instagram.com/gdsc_nits/"
+                href="https://www.instagram.com/gdgc_nits/"
                 target="_blank"
                 rel="noreferrer"
-                className={styles.footerSocialLinks}
+                className="footer-social-links"
                 title="Instagram"
               >
-                <FiInstagram className={styles.footerBtn3} size={24} />
+                <FiInstagram className={styles.footerSocialLinks} size={44} />
               </a>
               <a
-                href="http://twitter.com/gdscnits"
+                href="https://x.com/gdgcnits"
                 target="_blank"
                 rel="noreferrer"
-                className={styles.footerSocialLinks}
-                title="Twitter"
+                className="footer-social-links"
+                title="X"
               >
-                <FaTwitter className={styles.footerBtn4} size={24} />
+                <FaTwitter className={styles.footerSocialLinks} size={44} />
               </a>
               <a
                 href="https://www.reddit.com/r/gdscnits/"
                 target="_blank"
                 rel="noreferrer"
-                className={styles.footerSocialLinks}
+                className="footer-social-links"
                 title="Reddit"
               >
-                <FaReddit className={styles.footerBtn5} size={24} />
+                <FaReddit className={styles.footerSocialLinks} size={44} />
               </a>
             </div>
             <div className={styles.footerMail}>
@@ -84,7 +87,7 @@ function Footer() {
                 </a>
               </div>
               <a
-                href="https://gdsc.community.dev/national-institute-of-technology-nit-silchar/"
+                href="https://gdg.community.dev/gdg-on-campus-national-institute-of-technology-silchar-india/"
                 target="_blank"
                 rel="noreferrer"
               >
