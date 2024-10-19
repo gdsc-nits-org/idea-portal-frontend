@@ -54,7 +54,7 @@ const IdeaCont = ({ newIdea }) => {
       </div>
     );
   } else {
-    return <div>Idea List is Empty. Please Add!!</div>;
+    return <div className={styles.empty}>Idea List is Empty. Please Add!</div>;
   }
 };
 
